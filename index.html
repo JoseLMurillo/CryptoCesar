@@ -16,7 +16,7 @@
             
             <div>
                 <label for="Mesaje1">Mensaje</label>
-                <input id="Mesaje1" type="text" placeholder="Mesaje">
+                <input id="Mesaje1" type="text" placeholder="Mesaje" value="a Abc">
                 <button id="sendMesaje1" type="button">Enviar mensaje</button>
             </div>
         </section>
@@ -30,13 +30,28 @@
             <div>
                 <label for="Mesaje2">Mensaje</label>
                 <input id="Mesaje2" type="text" placeholder="Mesaje">
-                <button id="sendMesaj2" type="button">Enviar mensaje</button>
+                <button id="sendMesaje2" type="button">Enviar mensaje</button>
             </div>
         </section>        
 
-        <button id="sendUsers"type="button">Iniciar Secion</button>
+        <button id="sendUsers"type="button">Iniciar Secion</button> <br>
+
+        <div id="messageContainer">
+            <p>Chat:</p>
+        </div>
     </div>
 
+	<style>
+		textarea {width:400px;}
+	</style>
+</head>
+  
+<textarea id="cadena"></textarea>
+ 
+<p><input id="codificar" type="button" value="codificar"><input type="button" value="decodificar" onclick="decodificar()"></p>
+ 
+<div id="resultado"></div>
+ 
     <script src="main.js"></script>
     <script src="users.js"></script>
 </body>
