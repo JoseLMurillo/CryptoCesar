@@ -16,6 +16,10 @@ function main() {
         return now;
     }
 
+    function modulo(value) {
+        //Hacer el teorema del residió 
+    }
+
     function codificar(mesaje) {
         mesaje = mesaje.toLowerCase();
         let listaMensaje = [];
@@ -31,14 +35,24 @@ function main() {
             }
         }
 
+        for(let i=0; listamensaje.length; i++) {
+            listamensaje[i] = listamensaje[i] + user1.getkey;
+
+
+            /*Mirar quien vq q decodificar el mensaje, deberia de ser el usuqrio contrario */
+        }
+
         console.log(listaMensaje);
 
-        
+        for(let i=0; listamensaje.length; i++) {
+            let mod = 0;
+            mod = modulo(listamensaje[i]);
+        }
 /* 
         mesaje.forEach(e => {
             
         let l = abc.length; */
-        return mesaje;
+        return listamesaje;
     }
 
     function descodificar(mesajeK) {
@@ -65,5 +79,5 @@ function main() {
 
     console.log(user1.getUserName);
     console.log(user1.getkey);
-    //hola
+    
 }
