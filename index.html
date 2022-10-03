@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <section id="sectionUser1">
+    <div class="father">
+        <section id="sectionUser1" class="card">
             <div>
                 <label for="User1">Usuario</label>
                 <input id="User1" type="text" value="Jose">
@@ -17,11 +18,14 @@
             <div>
                 <label for="Mesaje1">Mensaje</label>
                 <input id="Mesaje1" type="text" placeholder="Mesaje" value="a Abc">
-                <button id="sendMesaje1" type="button">Enviar mensaje</button>
+                <button id="sendMesaje1" type="button" class="button">Enviar mensaje</button>
             </div>
-        </section>
+        </section> <br>
 
-        <section id="sectionUser2">
+        <div class="blob"></div>
+
+
+        <section id="sectionUser2" class="card">
             <div>
                 <label for="User2">Usuario</label>
                 <input id="User2" type="text" value="Mateo">
@@ -30,28 +34,29 @@
             <div>
                 <label for="Mesaje2">Mensaje</label>
                 <input id="Mesaje2" type="text" placeholder="Mesaje">
-                <button id="sendMesaje2" type="button">Enviar mensaje</button>
+                <button id="sendMesaje2" type="button"  class="button">Enviar mensaje</button>
             </div>
         </section>        
-
-        <button id="sendUsers"type="button">Iniciar Secion</button> <br>
-
-        <div id="messageContainer">
-            <p>Chat:</p>
-        </div>
     </div>
 
-	<style>
-		textarea {width:400px;}
-	</style>
-</head>
-  
-<textarea id="cadena"></textarea>
- 
-<p><input id="codificar" type="button" value="codificar"><input type="button" value="decodificar" onclick="decodificar()"></p>
- 
-<div id="resultado"></div>
- 
+    <div class="card">
+        <h1>Chat</h1>
+        <button id="sendUsers"type="button" class="button">Iniciar conversacion</button> <br>
+
+        <div id="messageContainer">
+        </div>
+
+    </div>
+
+<div class="container">
+    <div class="card">
+      <h1 class="title">Designed For Work</h1>
+      <p class="subtitle">Introducing the first ever 5G enabled tablet. You've got a tablet that
+        let's you play harder and work smarter.</p>
+      <button class="btn">Get Started</button>
+    </div>
+  </div>
+   
     <script src="main.js"></script>
     <script src="users.js"></script>
 </body>

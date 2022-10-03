@@ -4,10 +4,10 @@ class User {
     #mesaje;
     #time;
 
-    constructor (username, time ,key) {
+    constructor (username, key, time) {
         this.#username = username;
         this.#time = time;
-        this.#key = key || Math.floor(Math.random() * 100);;
+        this.#key = key;
         this.#mesaje = [];
     }
 
@@ -26,6 +26,4 @@ class User {
     get mesaje () {
         return this.#mesaje;
     }
-
-    
 }

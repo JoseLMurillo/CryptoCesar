@@ -1,14 +1,26 @@
 document.getElementById('sendUsers').addEventListener('click', main);
 
 function main() {
-    let user1, user2;
+    let user1, user2, key;
     let today = new Date();
 
     getUserName();
 
+    //TOMA LOS NOMBRES DE LOS USUARIOS
     function getUserName() {
-        user1 = new User(document.getElementById('User1').value);
-        user2 = new User(document.getElementById('User2').value);
+        user1 = document.getElementById('User1').value;
+        user2 = document.getElementById('User2').value;
+
+        key = Math.floor(Math.random() * 100)
+
+        //VALIDA CAMPOS
+        if(user1 != undefined && user2 != undefined){
+            user1 = new User(user1, key);
+            user2 = new User(user2, key);
+        }
+        else {
+            alert('Debe de ingresar los dos usuario');
+        }
     }
 
     function gettimeNow() {
@@ -16,58 +28,121 @@ function main() {
         return now;
     }
 
-    function modulo(value) {
-        //a cong b mod n
-        /* a/n = float
-        parseint float
-        int x n - a = |x| 
-        
-        REVIZAR EL ALGORITMO DE LA DIVICION Y EL TEOREMA DEL RESIDUO PARA ESTA PARTE*/
+    function modulo2(value) {
+        let listaDeCodificada = [];
+        for (let i = 0; i < value.length; i++) {
+        if (value[i] < 0) {
 
-        //Hacer el teorema del residió 
+            let expresion = 0;
+            let observador = true;
+            let contador = 0;
+
+            if (value[i] == -27) {
+                value[i] = 0;
+                observador = false;
+            }
+
+            while (observador == true) {
+
+                contador += 1;
+
+                expresion = value[i] - contador;
+
+                if (expresion % 27 == 0) {
+                    console.log(`${expresion} % ${27}`);
+                    console.log(contador);
+                    value[i] = contador;
+                    observador = false;
+                }
+            }
+        }
+    }
+
+    let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
+
+    for (let i = 0; i < value.length; i++) {
+        valor = abc[value[i]];
+        console.log(valor);
+        listaDeCodificada.push(valor);
+    }
+
+
+    console.log(listaDeCodificada);
+
+    return listaDeCodificada;
+    }
+
+    function modulo(value) {
+        for (let i = 0; i < value.length; i++) {
+            if (value[i] > 0) {
+                guardia = value[i];
+                value[i] = parseInt(value[i]);
+                value[i] = value[i] / 27;
+                value[i] = parseInt(value[i]);
+                value[i] = guardia - (value[i] * 27);
+            }
+        }
+
+        return value;
     }
 
     function codificar(mesaje) {
         mesaje = mesaje.toLowerCase();
         let listaMensaje = [];
-        let listaMensajeNumeros = [];
-        let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p','q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
+        let listaCodificada = [];
+        let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
 
-        //VACANO PODER IDENTIFICAR SI ES MAYUSCULA O NO Y COLOCARLA EN EL TEXTO SIN AGERGAR UNA NUEVA LISTA DE MAYUSCULAS
-        
-        for(let i = 0; i < mesaje.length; i++) {
-            console.log(mesaje[i]);
-            if(abc.includes(mesaje[i])) {
+        for (let i = 0; i < mesaje.length; i++) {
+            if (abc.includes(mesaje[i])) {
                 listaMensaje.push(abc.indexOf(mesaje[i]));
             }
         }
 
-        for(let i=0; listamensaje.length; i++) {
-            listamensaje[i] = listamensaje[i] + user1.getkey;
+        console.log(listaMensaje);
+
+        for (let i = 0; i < listaMensaje.length; i++) {
+            listaMensaje[i] = listaMensaje[i] + user1.getkey;
         }
 
         console.log(listaMensaje);
 
-        for(let i=0; listamensaje.length; i++) {
-            let mod = 0;
-            mod = modulo(listamensaje[i]);
-        }
-/* 
-        mesaje.forEach(e => {
-            
-        let l = abc.length; */
-        return listamesaje;
+        listaCodificada = modulo(listaMensaje);
+
+        /* VACANO PODER IDENTIFICAR SI ES MAYUSCULA O NO Y COLOCARLA EN EL TEXTO SIN AGERGAR UNA NUEVA LISTA DE MAYUSCULAS */
+        return listaCodificada;
+
     }
 
     function descodificar(mesajeK) {
+        console.log(mesajeK);
+        let valor;
+
+        for (let i = 0; i < mesajeK.length; i++) {
+            mesajeK[i] = mesajeK[i] - user1.getkey;
+        }
+        //console.log("mensje " + mesajeK);
+        mesajeK = modulo2(mesajeK);
+
+        mesajeK = desListar(mesajeK);
+
         return mesajeK;
     }
 
     function addMessage(user, mesajeK) {
         let j = document.createElement('p');
-        j.textContent = `${user}: ${descodificar(mesajeK)}`;;
         let messageContainer = document.getElementById('messageContainer');
+
+        j.textContent = `${user}: ${descodificar(mesajeK)}`;
         messageContainer.appendChild(j);
+    }
+
+    function desListar(value) {
+        let elemento = '';
+        for(i=0; i< value.length; i++){
+            elemento += value[i];
+        }
+
+        return elemento;
     }
 
     document.getElementById('sendMesaje1').addEventListener('click', sendMesaje1);
@@ -81,6 +156,14 @@ function main() {
         }
     }
 
-    console.log(user1.getUserName);
-    console.log(user1.getkey);
+    document.getElementById('sendMesaje2').addEventListener('click', sendMesaje2);
+
+    function sendMesaje2() {
+        mensaje2 = document.getElementById('Mesaje2');
+        if (mensaje2.value == '') {
+            alert('Por favor ingrese un mensaje');
+        } else {
+            addMessage(user2.getUserName, codificar(mensaje2.value));
+        }
+    }
 }
