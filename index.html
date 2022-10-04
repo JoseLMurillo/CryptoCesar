@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="father">
         <section id="sectionUser1" class="card">
@@ -14,7 +16,7 @@
                 <label for="User1">Usuario</label>
                 <input id="User1" type="text" value="Jose">
             </div>
-            
+
             <div>
                 <label for="Mesaje1">Mensaje</label>
                 <input id="Mesaje1" type="text" placeholder="Mesaje" value="a Abc">
@@ -30,34 +32,36 @@
                 <label for="User2">Usuario</label>
                 <input id="User2" type="text" value="Mateo">
             </div>
-            
+
             <div>
                 <label for="Mesaje2">Mensaje</label>
                 <input id="Mesaje2" type="text" placeholder="Mesaje">
-                <button id="sendMesaje2" type="button"  class="button">Enviar mensaje</button>
+                <button id="sendMesaje2" type="button" class="button">Enviar mensaje</button>
             </div>
-        </section>        
+        </section>
     </div>
 
-    <div class="card">
-        <h1>Chat</h1>
-        <button id="sendUsers"type="button" class="button">Iniciar conversacion</button> <br>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Chat <button id="sendUsers" type="button" class="button">Iniciar conversacion</button> <br>
+            </h1>
 
-        <div id="messageContainer">
+            <div id="messageContainer">
+            </div>
         </div>
-
     </div>
 
-<div class="container">
-    <div class="card">
-      <h1 class="title">Designed For Work</h1>
-      <p class="subtitle">Introducing the first ever 5G enabled tablet. You've got a tablet that
-        let's you play harder and work smarter.</p>
-      <button class="btn">Get Started</button>
-    </div>
-  </div>
-   
+    <!-- <div class="container">
+        <div class="card">
+            <h1 class="title">Designed For Work</h1>
+            <p class="subtitle">Introducing the first ever 5G enabled tablet. You've got a tablet that
+                let's you play harder and work smarter.</p>
+            <button class="btn">Get Started</button>
+        </div>
+    </div> -->
+
     <script src="main.js"></script>
     <script src="users.js"></script>
 </body>
+
 </html>

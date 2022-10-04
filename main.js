@@ -1,8 +1,9 @@
 document.getElementById('sendUsers').addEventListener('click', main);
 
 function main() {
-    let user1, user2, key;
-    let today = new Date();
+    let user1, user2;
+    let key = Math.floor(Math.random() * 100);
+    let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
 
     getUserName();
 
@@ -11,138 +12,159 @@ function main() {
         user1 = document.getElementById('User1').value;
         user2 = document.getElementById('User2').value;
 
-        key = Math.floor(Math.random() * 100)
-
         //VALIDA CAMPOS
-        if(user1 != undefined && user2 != undefined){
-            user1 = new User(user1, key);
-            user2 = new User(user2, key);
-        }
-        else {
+        if (user1 != undefined && user2 != undefined) {
+            user1 = new User(user1, key, '#0655ff');
+            user2 = new User(user2, key, '#01dd55');
+        } else {
             alert('Debe de ingresar los dos usuario');
         }
     }
 
+    //FUNCION QUE TOMA LA HORA ACTUAL
     function gettimeNow() {
-        let now = today.toLocaleString();
+        let today = new Date();
+        let now = today.toLocaleTimeString();
         return now;
     }
 
-    function modulo2(value) {
-        let listaDeCodificada = [];
-        for (let i = 0; i < value.length; i++) {
-        if (value[i] < 0) {
+    //ENCARGA DE ENCOTRAR EL b DE a CONG b mod n
+    function modulo(num, mensajeKey) {
 
-            let expresion = 0;
-            let observador = true;
-            let contador = 0;
-
-            if (value[i] == -27) {
-                value[i] = 0;
-                observador = false;
-            }
-
-            while (observador == true) {
-
-                contador += 1;
-
-                expresion = value[i] - contador;
-
-                if (expresion % 27 == 0) {
-                    console.log(`${expresion} % ${27}`);
-                    console.log(contador);
-                    value[i] = contador;
-                    observador = false;
+        //ENCUENTRA EL b DE a CONG b mod n CON A POSITIVO
+        if (num == 0) {
+            for (let i = 0; i < mensajeKey.length; i++) {
+                if (mensajeKey[i] > 0) {
+                    guardia = mensajeKey[i];
+                    mensajeKey[i] = parseInt(mensajeKey[i]);
+                    mensajeKey[i] = mensajeKey[i] / 27;
+                    mensajeKey[i] = parseInt(mensajeKey[i]);
+                    mensajeKey[i] = guardia - (mensajeKey[i] * 27);
                 }
             }
+            return mensajeKey;
         }
-    }
 
-    let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
+        //ENCARGADA DE ENCOTRAR EL b DE a CONG b mod n CON A NEGATIVO
+        if (num == 1) {
+            console.log("m "+mensajeKey);
+            let listaDeCodificada = [];
 
-    for (let i = 0; i < value.length; i++) {
-        valor = abc[value[i]];
-        console.log(valor);
-        listaDeCodificada.push(valor);
-    }
+            for (let i = 0; i < mensajeKey.length; i++) {
+                if (mensajeKey[i] < 0) {
 
+                    let expresion = 0;
+                    let observador = true;
+                    let contador = 0;
 
-    console.log(listaDeCodificada);
+                    if (mensajeKey[i] == -27) {
+                        mensajeKey[i] = 0;
+                        observador = false;
+                    }
 
-    return listaDeCodificada;
-    }
+                    if(mensajeKey[i] != -27) {
+                        while (observador == true) {
 
-    function modulo(value) {
-        for (let i = 0; i < value.length; i++) {
-            if (value[i] > 0) {
-                guardia = value[i];
-                value[i] = parseInt(value[i]);
-                value[i] = value[i] / 27;
-                value[i] = parseInt(value[i]);
-                value[i] = guardia - (value[i] * 27);
+                            expresion = mensajeKey[i] - contador;
+                            
+                            if (expresion % 27 == 0) {
+                                console.log(`${expresion} % ${27}`);
+                                console.log(contador);
+                                mensajeKey[i] = contador;
+                                observador = false;
+                            }
+
+                            contador += 1;
+                        }
+                    }
+                }
             }
-        }
 
-        return value;
-    }
-
-    function codificar(mesaje) {
-        mesaje = mesaje.toLowerCase();
-        let listaMensaje = [];
-        let listaCodificada = [];
-        let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
-
-        for (let i = 0; i < mesaje.length; i++) {
-            if (abc.includes(mesaje[i])) {
-                listaMensaje.push(abc.indexOf(mesaje[i]));
+            for (let i = 0; i < mensajeKey.length; i++) {
+                valor = abc[mensajeKey[i]];
+                console.log(valor);
+                listaDeCodificada.push(valor);
             }
+
+            console.log(listaDeCodificada);
+
+            return listaDeCodificada;
         }
-
-        console.log(listaMensaje);
-
-        for (let i = 0; i < listaMensaje.length; i++) {
-            listaMensaje[i] = listaMensaje[i] + user1.getkey;
-        }
-
-        console.log(listaMensaje);
-
-        listaCodificada = modulo(listaMensaje);
-
-        /* VACANO PODER IDENTIFICAR SI ES MAYUSCULA O NO Y COLOCARLA EN EL TEXTO SIN AGERGAR UNA NUEVA LISTA DE MAYUSCULAS */
-        return listaCodificada;
-
     }
 
-    function descodificar(mesajeK) {
-        console.log(mesajeK);
-        let valor;
-
-        for (let i = 0; i < mesajeK.length; i++) {
-            mesajeK[i] = mesajeK[i] - user1.getkey;
-        }
-        //console.log("mensje " + mesajeK);
-        mesajeK = modulo2(mesajeK);
-
-        mesajeK = desListar(mesajeK);
-
-        return mesajeK;
-    }
-
-    function addMessage(user, mesajeK) {
-        let j = document.createElement('p');
-        let messageContainer = document.getElementById('messageContainer');
-
-        j.textContent = `${user}: ${descodificar(mesajeK)}`;
-        messageContainer.appendChild(j);
-    }
-
+    //COVERT LIST TO STRING
     function desListar(value) {
         let elemento = '';
-        for(i=0; i< value.length; i++){
+        for (i = 0; i < value.length; i++) {
             elemento += value[i];
         }
 
         return elemento;
+    }
+
+    //DECOFICAR
+    function descodificar(mensajeK) {
+        console.log(mensajeK);
+
+        //REST KEY
+        for (let i = 0; i < mensajeK.length; i++) {
+            mensajeK[i] = mensajeK[i] - user1.getkey;
+        }
+
+        //RETURN LETRAS
+        mensajeK = modulo(1, mensajeK);
+
+        //RETURN STRING FROM A LIST
+        mensajeK = desListar(mensajeK);
+
+        return mensajeK;
+    }
+
+    //AGREGAR MENSAJE EN PANTALLA
+    function addMessage(user, mensajeK) {
+
+        let j = document.createElement('p');
+        //CONTENEDOR 
+        let messageContainer = document.getElementById('messageContainer');
+        //TEXTCONTENT
+        j.textContent = `${user.getUserName}: ${descodificar(mensajeK)} [${gettimeNow()}]`;
+
+        j.className = 'parrafo';
+        /* 
+         * CODICIONAR SI ES EL USUARIO 1 QUE COLOR SE USARA PARA SU CHAT
+         */
+        j.style.backgroundColor = user.getColor;
+        messageContainer.appendChild(j);
+    }
+
+    //CODIFICAR
+    function codificar(user, mensaje) {
+        let listaMensaje = [];
+        let listaCodificada = [];
+
+        //MINUSCULAS
+        mensaje = mensaje.toLowerCase();
+        
+        //INDEX TO ABC
+        for (let i = 0; i < mensaje.length; i++) {
+            if (abc.includes(mensaje[i])) {
+                listaMensaje.push(abc.indexOf(mensaje[i]));
+            }
+        }
+
+        console.log('Index: '+ listaMensaje);
+
+        //SUM KEY
+        for (let i = 0; i < listaMensaje.length; i++) {
+            listaMensaje[i] = listaMensaje[i] + user.getkey;
+        }
+
+        console.log('+Key: '+listaMensaje);
+
+        listaCodificada = modulo(0, listaMensaje);
+
+        /* VACANO PODER IDENTIFICAR SI ES MAYUSCULA O NO Y COLOCARLA EN EL TEXTO SIN AGERGAR UNA NUEVA LISTA DE MAYUSCULAS */
+        return listaCodificada;
     }
 
     document.getElementById('sendMesaje1').addEventListener('click', sendMesaje1);
@@ -152,7 +174,7 @@ function main() {
         if (mensaje1.value == '') {
             alert('Por favor ingrese un mensaje');
         } else {
-            addMessage(user1.getUserName, codificar(mensaje1.value));
+            addMessage(user1, codificar(user1, mensaje1.value));
         }
     }
 
@@ -163,7 +185,7 @@ function main() {
         if (mensaje2.value == '') {
             alert('Por favor ingrese un mensaje');
         } else {
-            addMessage(user2.getUserName, codificar(mensaje2.value));
+            addMessage(user2, codificar(user2, mensaje2.value));
         }
     }
 }
