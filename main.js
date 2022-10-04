@@ -1,8 +1,13 @@
 document.getElementById('sendUsers').addEventListener('click', main);
 
 function main() {
+    document.getElementById('sendUsers').hidden = true;
+    document.getElementById('User1').disabled = true;
+    document.getElementById('User2').disabled = true;
+
     let user1, user2;
     let key = Math.floor(Math.random() * 100);
+    console.log('Clave: '+ key);
     let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
 
     getUserName();
@@ -15,7 +20,7 @@ function main() {
         //VALIDA CAMPOS
         if (user1 != undefined && user2 != undefined) {
             user1 = new User(user1, key, '#0655ff');
-            user2 = new User(user2, key, '#01dd55');
+            user2 = new User(user2, key, '#00b344');
         } else {
             alert('Debe de ingresar los dos usuario');
         }
@@ -42,12 +47,12 @@ function main() {
                     mensajeKey[i] = guardia - (mensajeKey[i] * 27);
                 }
             }
+            console.log('Congruencia Cod: '+mensajeKey);
             return mensajeKey;
         }
 
         //ENCARGADA DE ENCOTRAR EL b DE a CONG b mod n CON A NEGATIVO
         if (num == 1) {
-            console.log("m "+mensajeKey);
             let listaDeCodificada = [];
 
             for (let i = 0; i < mensajeKey.length; i++) {
@@ -68,8 +73,6 @@ function main() {
                             expresion = mensajeKey[i] - contador;
                             
                             if (expresion % 27 == 0) {
-                                console.log(`${expresion} % ${27}`);
-                                console.log(contador);
                                 mensajeKey[i] = contador;
                                 observador = false;
                             }
@@ -80,13 +83,14 @@ function main() {
                 }
             }
 
+            console.log('Congruencia Decod: '+mensajeKey);
+
             for (let i = 0; i < mensajeKey.length; i++) {
                 valor = abc[mensajeKey[i]];
-                console.log(valor);
                 listaDeCodificada.push(valor);
             }
 
-            console.log(listaDeCodificada);
+            console.log("L.Decod: " + listaDeCodificada);
 
             return listaDeCodificada;
         }
@@ -104,12 +108,11 @@ function main() {
 
     //DECOFICAR
     function descodificar(mensajeK) {
-        console.log(mensajeK);
-
         //REST KEY
         for (let i = 0; i < mensajeK.length; i++) {
             mensajeK[i] = mensajeK[i] - user1.getkey;
         }
+        console.log('-Key: '+mensajeK);
 
         //RETURN LETRAS
         mensajeK = modulo(1, mensajeK);
